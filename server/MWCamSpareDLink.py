@@ -19,7 +19,7 @@ SOCKET_CLIENT_HOST = "localhost"
 SOCKET_CLIENT_PORT = 2525
 
 # IP Camaera
-CAMERA_IP = "192.168.0.20"
+CAMERA_IP = "192.168.0.71"
 CAMERA_USERNAME = "admin"
 CAMERA_PASSWORD = ""#twitch"
 CAMERA_SIZE_WIDTH = 620
@@ -170,7 +170,7 @@ class CameraPanel( wx.Panel ):
                 stream = self.Camera.Update()
                 if stream != None:
                     img = wx.ImageFromStream( stream )
-                    img = img.Rotate90( False )
+                    # img = img.Rotate90( False )
                     bmp = wx.BitmapFromImage( img )
                     dc.DrawBitmap( bmp, 0, 0, True )
             except:
@@ -182,19 +182,19 @@ class CameraPanel( wx.Panel ):
             dc.DrawRectangle( -1, -1, CAMERA_SIZE_WIDTH, CAMERA_SIZE_HEIGHT )
             
         # Draw the SocketClient match data
-        if self.SocketClient != None:
-            dc.SetTextForeground( HUD_COLOR )
+        # if self.SocketClient != None:
+            # dc.SetTextForeground( HUD_COLOR )
             
-            # Clock
-            min = self.SocketClient.MatchTime / 600
-            sec = int((self.SocketClient.MatchTime -(min * 600)) * .1)
+            # # Clock
+            # min = self.SocketClient.MatchTime / 600
+            # sec = int((self.SocketClient.MatchTime -(min * 600)) * .1)
             
-            dc.DrawText( str(min).rjust(2, "0") + ":" + str(sec).rjust(2, "0"), TIME_POSITION_X, TIME_POSITION_Y )
+            # dc.DrawText( str(min).rjust(2, "0") + ":" + str(sec).rjust(2, "0"), TIME_POSITION_X, TIME_POSITION_Y )
             
-            # Scores
-            for m in xrange(self.SocketClient.NumMechs):
-                dc.DrawText( self.SocketClient.MechNames[m], SCORE_POSITION_X, SCORE_POSITION_Y1+(40*m) )
-                dc.DrawText( str(self.SocketClient.MechHP[m]), SCORE_POSITION_X, SCORE_POSITION_Y2+(40*m) )
+            # # Scores
+            # for m in xrange(self.SocketClient.NumMechs):
+                # dc.DrawText( self.SocketClient.MechNames[m], SCORE_POSITION_X, SCORE_POSITION_Y1+(40*m) )
+                # dc.DrawText( str(self.SocketClient.MechHP[m]), SCORE_POSITION_X, SCORE_POSITION_Y2+(40*m) )
             
         # Draw the crosshairs
 
